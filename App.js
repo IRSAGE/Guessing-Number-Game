@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Header } from "react-native/Libraries/NewAppScreen";
+import GameOverScreen from "./screens/GameOverScreen";
 import GameScreen from "./screens/GameScreen";
 import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [guessRounds, setGessRounds] = useState(0);
 
   const startGameHandler = (selectedNumber) => {
     setUserNumber(selectedNumber);
+    setGessRounds(0);
+  };
+
+  const gameOverHandler = (numOfRounds) => {
+    setGessRounds(numOfRounds);
   };
 
   let content = <StartGameScreen onStartGame={startGameHandler} />;
-  if (userNumber) {
-    content = <GameScreen userChoice={userNumber} />;
+  if (userNumber && guessRounds <= 0) {
+    content = (
+      <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
+    );
+  } else if (guessRounds > 0) {
+    content = <GameOverScreen />;
   }
   return (
     <View style={styles.screen}>
