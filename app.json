@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-navive-project",
-    "slug": "react-navive-project",
+    "name": "Gess-Number-Game",
+    "slug": "Gess-Number-Game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

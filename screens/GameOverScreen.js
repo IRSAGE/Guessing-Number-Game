@@ -1,18 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
-import BodyText from "../components/BodyText";
-import MainButton from "../components/MainButton";
-import TitleText from "../components/TitleText";
 
-const GameOverScreen = () => {
+import BodyText from "../components/BodyText";
+import TitleText from "../components/TitleText";
+import MainButton from "../components/MainButton";
+import Colors from "../constants/colors";
+
+const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
-      <TitleText>The Game Is Over</TitleText>
+      <TitleText>The Game is Over!</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          fadeDuration={1000}
           source={require("../assets/success.png")}
+          // source={{
+          //   uri:
+          //     'https://cdn.pixabay.com/photo/2016/05/05/23/52/mountain-summit-1375015_960_720.jpg'
+          // }}
           style={styles.image}
+          resizeMode="cover"
         />
       </View>
       <View style={styles.resultContainer}>
@@ -23,7 +29,8 @@ const GameOverScreen = () => {
           <Text style={styles.highlight}>{props.userNumber}</Text>.
         </BodyText>
       </View>
-      <MainButton onPress={props.onRestart}>New Game</MainButton>
+
+      <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
     </View>
   );
 };
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "black",
     overflow: "hidden",
-    marginVertical: 20,
+    marginVertical: 30,
   },
   image: {
     width: "100%",
@@ -57,7 +64,6 @@ const styles = StyleSheet.create({
   },
   highlight: {
     color: Colors.primary,
-    fontFamily: "open-sans-bold",
   },
 });
 

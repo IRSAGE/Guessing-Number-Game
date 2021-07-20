@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Button, Alert } from "react-native";
-import Card from "../components/Card";
-import MainButton from "../components/MainButton";
+
 import NumberContainer from "../components/NumberContainer";
-import DefaultStyle from "../constants/default-style";
-import { Ionicons } from "@expo/vector-icons";
+import Card from "../components/Card";
 
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -38,7 +36,7 @@ const GameScreen = (props) => {
       (direction === "lower" && currentGuess < props.userChoice) ||
       (direction === "greater" && currentGuess > props.userChoice)
     ) {
-      Alert.alert("Don't lie!", "You Know That This Is Wrong...", [
+      Alert.alert("Don't lie!", "You know that this is wrong...", [
         { text: "Sorry!", style: "cancel" },
       ]);
       return;
@@ -59,23 +57,14 @@ const GameScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Text style={DefaultStyle.title}>Opponent's Guess</Text>
+      <Text>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <Card>
-        <MainButton
-          onPress={() => {
-            nextGuessHandler.bind(this, "lower");
-          }}
-        >
-          <Ionicons name="md-remove" size={24} color="white" />
-        </MainButton>
-        <MainButton
-          onPress={() => {
-            nextGuessHandler.bind(this, "greater");
-          }}
-        >
-          <Ionicons name="md-add" size={24} color="white" />
-        </MainButton>
+      <Card style={styles.buttonContainer}>
+        <Button title="LOWER" onPress={nextGuessHandler.bind(this, "lower")} />
+        <Button
+          title="GREATER"
+          onPress={nextGuessHandler.bind(this, "greater")}
+        />
       </Card>
     </View>
   );
@@ -92,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 20,
     width: 300,
-    maxWidth: "800%",
+    maxWidth: "80%",
   },
 });
 
