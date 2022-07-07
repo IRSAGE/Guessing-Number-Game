@@ -1,0 +1,24 @@
+{
+  "cli": {
+    "version": ">= 0.54.1"
+  },
+  "build": {
+    "development": {
+      "releaseChannel": "staging",
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "staging": {
+      "releaseChannel": "staging",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "releaseChannel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
